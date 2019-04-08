@@ -2,9 +2,9 @@ from flask import redirect, request, url_for, render_template
 from flask.views import MethodView
 import gbmodel
 
-class AddStudent(MethodView):
+class RemoveStudent(MethodView):
     def get(self):
-        return render_template('addStudent.html')
+        return render_template('removeStudent.html')
 
     def post(self):
         """
@@ -12,14 +12,14 @@ class AddStudent(MethodView):
         Redirect to index when completed.
         """
         model = gbmodel.get_model()
-        model.insertStudent(request.form['studentName'], request.form['studentID'], 
-        request.form['sessionID'], request.form['teamID'])
-        return redirect(url_for('addStudent'))
+        model.removeStudent(request.form['studentID'], 
+        request.form['sessionID'])
+        return redirect(url_for('removeStudent'))
 
 
-class AddTeam(MethodView):
+class RemoveTeam(MethodView):
     def get(self):
-        return render_template('addTeam.html')
+        return render_template('removeTeam.html')
 
     def post(self):
         """
@@ -27,6 +27,7 @@ class AddTeam(MethodView):
         Redirect to index when completed.
         """
         model = gbmodel.get_model()
-        model.insertTeam(request.form['teamID'], 
-        request.form['sessionID'],request.form['teamName'])
-        return redirect(url_for('addTeam'))
+        model.removeTeam(request.form['teamID'], 
+        request.form['sessionID'])
+        return redirect(url_for('removeTeam'))
+

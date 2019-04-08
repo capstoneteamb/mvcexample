@@ -1,4 +1,3 @@
-#model_backend = 'pylist'
 model_backend = 'sqlite3'
 
 if model_backend == 'sqlite3':
